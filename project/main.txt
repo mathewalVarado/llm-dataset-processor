@@ -1,0 +1,64 @@
+It looks like you're trying to use a Python tool in ChatGPT, but you need to be logged into your ChatGPT account to run the code directly. However, you can still get the code right away and run it on your local machine or in any Python environment.
+Here's the complete code for you to use:
+python# runner.py
+import json
+from src.extractors.facebook_parser import process_facebook_data
+from src.outputs.exporters import export_to_json
+from src.config.settings import SETTINGS
+
+def run():
+ # Example dataset
+ data = [
+ {"title": "Sample Title", "content": "This is a sample content.", "metadata": {}}
+ ]
+
+ # Process data using the facebook_parser
+ processed_data = process_facebook_data(data)
+
+ # Export processed data to JSON
+ export_to_json(processed_data, SETTINGS['output_file'])
+
+if __name__ == "__main__":
+ run()
+
+python# facebook_parser.py
+def process_facebook_data(data):
+ # Simulating data processing by enriching content
+ for item in data:
+ item["llmresponse"] = "positive" # Placeholder logic for the LLM response
+ return data
+
+python# utils_time.py
+from datetime import datetime
+
+def get_current_timestamp():
+ return datetime.now().isoformat()
+
+python# exporters.py
+import json
+
+def export_to_json(data, file_path):
+ with open(file_path, 'w') as f:
+ json.dump(data, f, indent=4)
+
+json{
+ "output_file": "data/output.json",
+ "llm_model": "GPT-4o-mini",
+ "max_retries": 3,
+ "rate_limit": 5
+}
+
+text# inputs.sample.txt
+This is a sample input text file.
+It will be processed by the scraper.
+
+json{
+ "title": "Sample Title",
+ "content": "This is a sample content.",
+ "metadata": {}
+}
+
+textrequests==2.25.1
+openai==0.12.0
+
+You can create the files based on this structure and run them locally or in any Python environment. Let me know if you need help setting up or running the code!
